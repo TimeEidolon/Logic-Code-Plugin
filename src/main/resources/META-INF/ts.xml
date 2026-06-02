@@ -1,0 +1,19 @@
+<idea-plugin>
+    <!-- TypeScript / JavaScript features live here; loaded only when JS plugin is present. -->
+
+    <actions>
+        <action id="LogicCodePlugin.GenerateFrontendRouteGuide"
+                class="com.github.timeeidolon.logiccodeplugin.actions.GenerateFrontendRouteGuideAction"
+                text="Generate Frontend Route Guide (TS/JS)"
+                description="Static react-router scan → markdown. Separate from the Java/Kotlin LLM report. Shown only when the project looks frontend-related (unless disabled in settings).">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+        <action id="LogicCodePlugin.GenerateTsProjectDecomposerDocs"
+                class="com.github.timeeidolon.logiccodeplugin.actions.GenerateTsProjectDecomposerDocsAction"
+                text="Generate TS Project Decomposition Docs"
+                description="Scaffold docs/PROJECT_OVERVIEW.md and docs/PROJECT_FEATURE_DETAILS.md with static src/pages and route tables. Not the Java report. Shown when the project looks frontend-related (unless disabled in settings).">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
+

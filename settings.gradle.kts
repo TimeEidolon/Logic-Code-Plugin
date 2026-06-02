@@ -2,6 +2,10 @@ import org.jetbrains.intellij.platform.gradle.extensions.intellijPlatform
 
 rootProject.name = "IntelliJ Platform Plugin Template"
 
+include("core")
+include("lang-java")
+include("lang-ts")
+
 pluginManagement {
     plugins {
         id("org.jetbrains.kotlin.jvm") version "2.1.20"

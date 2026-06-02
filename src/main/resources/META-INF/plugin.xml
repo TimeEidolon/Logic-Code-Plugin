@@ -1,19 +1,45 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.timeeidolon.logiccodeplugin</id>
-    <name>Logic-Code-Plugin</name>
+    <name>Logic-Code</name>
     <vendor>timeeidolon</vendor>
     <description><![CDATA[
-        <p><b>Logic-Code-Plugin</b> is a repository that provides a pure template to make it easier to create a new plugin project.</p>
-        <p>The main goal of this template is to speed up the setup phase of plugin development for both new and experienced developers by preconfiguring the project scaffold and CI, linking to the proper documentation pages, and keeping everything organized.</p>
+        <p><b>Logic-Code-Plugin</b> helps you document and explore projects in IntelliJ IDEA.</p>
+        <p><b>Java/Kotlin JVM</b>: inventory, entrypoints (controllers, jobs), source context, and optional LLM report — action <i>Generate Project Report (Java/Kotlin JVM)</i>.</p>
+        <p><b>TypeScript/JavaScript</b> (when the JavaScript plugin is present): static route scan and TS decomposition doc scaffolds — separate Project View actions.</p>
+        <p>Smart menu visibility can hide actions that do not match the detected project kind (see Settings → Tools → Logic Code Report).</p>
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends optional="true" config-file="java.xml">com.intellij.java</depends>
+    <depends optional="true" config-file="ts.xml">JavaScript</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.timeeidolon.logiccodeplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.timeeidolon.logiccodeplugin.startup.MyProjectActivity" />
+        <applicationService
+            serviceImplementation="com.github.timeeidolon.logiccodeplugin.settings.ReportPluginSettings"/>
+        <applicationConfigurable
+            parentId="tools"
+            instance="com.github.timeeidolon.logiccodeplugin.settings.ReportSettingsConfigurable"
+            id="com.github.timeeidolon.logiccodeplugin.settings.ReportSettingsConfigurable"
+            displayName="Logic Code Report"/>
+        <toolWindow
+            id="LogicCodeReport"
+            factoryClass="com.github.timeeidolon.logiccodeplugin.ui.ReportToolWindowFactory"
+            anchor="right"
+            icon="AllIcons.Toolwindows.ToolWindowAskAI"/>
+        <notificationGroup id="com.github.timeeidolon.logiccodeplugin.notifications"
+                           displayType="BALLOON"
+                           displayName="Logic Code"/>
     </extensions>
+
+    <actions>
+        <action id="LogicCodePlugin.GenerateReport"
+                class="com.github.timeeidolon.logiccodeplugin.actions.GenerateProjectReportAction"
+                text="Generate Project Report (Java/Kotlin JVM)"
+                description="LLM-assisted Java/Kotlin project analysis (inventory, entrypoints, report). Not for pure frontend-only repos when smart menus are on.">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>

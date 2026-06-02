@@ -1,0 +1,19 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <projectService
+            serviceImplementation="com.github.timeeidolon.logiccodeplugin.cache.MethodPsiChangeWatcher"/>
+        <codeInsight.lineMarkerProvider
+            language="JAVA"
+            implementationClass="com.github.timeeidolon.logiccodeplugin.gutter.LogicGraphLineMarkerProvider"/>
+    </extensions>
+
+    <actions>
+        <action id="LogicCodePlugin.OpenEntryGuideAtCaret"
+                class="com.github.timeeidolon.logiccodeplugin.actions.OpenProjectEntryGuideAtCaretAction"
+                text="Open Entry Guide Anchor"
+                description="Open PROJECT_ENTRYPOINT_GUIDE.md near the method at caret (entrypoint methods)">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
+
