@@ -41,7 +41,7 @@ kotlin {
 }
 
 dependencies {
-    implementation("org.webjars.npm:mermaid:11.6.0")
+    implementation("org.webjars.npm:mermaid:11.15.0")
     implementation("org.webjars:webjars-locator-core:0.59")
 
     // local-pkg:1.1.2 requires pkg-types:[2.3.0,3.0.0-0), which is not published on Maven Central yet.
