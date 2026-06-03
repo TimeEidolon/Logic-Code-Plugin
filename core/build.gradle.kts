@@ -46,7 +46,7 @@ dependencies {
 
     // local-pkg:1.1.2 requires pkg-types:[2.3.0,3.0.0-0), which is not published on Maven Central yet.
     constraints {
-        implementation("org.webjars.npm:local-pkg:1.1.1") {
+        implementation("org.webjars.npm:local-pkg:1.1.2") {
             because("Maven Central only has pkg-types up to 2.1.0 (webjars sync gap)")
         }
     }
